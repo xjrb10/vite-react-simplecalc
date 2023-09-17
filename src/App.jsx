@@ -34,6 +34,7 @@ function App() {
                 }
         }
         setEnteredText(enteredText + char)
+        setJustAnswered(false)
     };
 
     const CalculatorButton = (props) => {
