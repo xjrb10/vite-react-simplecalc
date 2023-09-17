@@ -28,36 +28,29 @@ function App() {
                 break;
             default:
                 if (justAnswered){
+                    // override after "equals" if we input a number
                     setEnteredText(char);
                     setJustAnswered(false);
                     return;
                 }
+        }
+        if (/0+([+\-*\/]*\d*)*/.test(enteredText)) {
+            // override 0s
+            setEnteredText(char)
+            setJustAnswered(false)
+            return;
         }
         setEnteredText(enteredText + char)
         setJustAnswered(false)
     };
 
     const CalculatorButton = (props) => {
-        return (<Button color={props.color || "link"} className="is-fullwidth is-medium"
-                        onClick={onBtnClick}>{props.value}</Button>)
+        return (
+            <Button color={props.color || "link"} className="is-fullwidth is-medium" onClick={onBtnClick}>
+                {props.value}
+            </Button>
+        );
     };
-
-    const Header = () => {
-        return (<Container>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo"/>
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo"/>
-                </a>
-            </div>
-            <h1>Vite + React</h1>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </Container>);
-    }
 
     return (
         <Container>
